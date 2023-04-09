@@ -11,9 +11,6 @@ function secondTime (data) {
 
     player.on('timeupdate', throttle(secondTime, 1000));
 
-    // player.getVideoTitle().then(function(title) {
-    //     console.log('title:', title);
-    // });
        const secondStop = JSON.parse(localStorage.getItem(STORAGE_KEY));
 player.setCurrentTime(secondStop).then(function (seconds) {
     if (!secondStop) {
