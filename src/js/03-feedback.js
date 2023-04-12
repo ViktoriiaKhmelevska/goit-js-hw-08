@@ -34,7 +34,6 @@ function onFormSubmit(e) {
     };
  };
 
-
 function onInputEmail(e) { 
         // let props = Object.keys(formData);
         // for (let i = 0; i < formData.length; i++) {
@@ -65,13 +64,11 @@ function onInputMessage(e) {
   console.log(formData);
 
 function populateTextarea() {
-    data.email.value = "";
-    data.message.value = "";
-    if (localStorage.getItem(STORAGE_KEY)===null)
-    { return }
+    if (localStorage.getItem(STORAGE_KEY) !== null){
     let savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (savedMessage !== {}) {
-        data.email.value = savedMessage.email;
-        data.message.value = savedMessage.message;
-    }
+    data.email.value = savedMessage.email;
+    data.message.value = savedMessage.message;
+    };
+            data.email.value = "";
+        data.message.value = "";
     };
