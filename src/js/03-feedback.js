@@ -38,7 +38,7 @@ function onFormSubmit(e) {
 
 function populateTextarea() {
 
-    if (localStorage.getItem(STORAGE_KEY) !== null ) {
+    if (JSON.parse(localStorage.getItem(STORAGE_KEY)) !== {} ) {
 
     let savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
     data.email.value = savedMessage.email;
