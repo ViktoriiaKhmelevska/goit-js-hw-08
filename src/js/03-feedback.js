@@ -7,18 +7,22 @@ const data = {
     email: document.querySelector('.js-feedback-form input'),
     message: document.querySelector('.js-feedback-form textarea'),
 }
+
 const formData = {};
 
 data.form.addEventListener('submit', onFormSubmit);
 data.form.addEventListener('input', throttle(onInput, 500));
 
-function onInput(e){
+function onInput(e) {
+    // formData.email = "";
+    // formData.message = "";
     if (e.target.value) {
-formData[e.target.name] = e.target.value;
-    } else {
-         formData[e.target.name] = "";
+        formData[e.target.name] = e.target.value;
+      }
+    else {
+        formData[e.target.name] = "";
     }
-   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+ localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));     
 };
 
 populateTextarea();
@@ -38,15 +42,13 @@ function onFormSubmit(e) {
 
 function populateTextarea() {
     let savedMessage = (JSON.parse(localStorage.getItem(STORAGE_KEY)) || "")
-    if (savedMessage.email === "") {
-        data.email.value = "";
+    if (savedMessage.email !== "") {
+    data.email.value = savedMessage.email;
     }
-    if (savedMessage.message === "") {
-        data.message.value = "";
-    } else {
-        data.email.value = savedMessage.email;
-        data.message.value = savedMessage.message;
+    if (savedMessage.message !== "") {
+         data.message.value = savedMessage.message;
     }
+        
     // if (!(savedMessage.email === "" || savedMessage.message === "")) {
     //     data.email.value = savedMessage.email;
     //     data.message.value = savedMessage.message;
