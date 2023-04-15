@@ -37,15 +37,21 @@ function onFormSubmit(e) {
  };
 
 function populateTextarea() {
-
-    if (JSON.parse(localStorage.getItem(STORAGE_KEY)) !== {} ) {
-
-    let savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    data.email.value = savedMessage.email;
-        data.message.value = savedMessage.message;
-        return;
-    } else {
-    data.email.value = "";
-    data.message.value = "";
+    let savedMessage = (JSON.parse(localStorage.getItem(STORAGE_KEY)) || "")
+    if (savedMessage.email === "") {
+        data.email.value = "";
     }
+    if (savedMessage.message === "") {
+        data.message.value = "";
+    } else {
+        data.email.value = savedMessage.email;
+        data.message.value = savedMessage.message;
+    }
+    // if (!(savedMessage.email === "" || savedMessage.message === "")) {
+    //     data.email.value = savedMessage.email;
+    //     data.message.value = savedMessage.message;
+    // } else {
+    //         data.email.value = "";
+    // data.message.value = "";
+    // }
     };
