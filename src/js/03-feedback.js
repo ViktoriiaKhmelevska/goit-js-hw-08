@@ -7,7 +7,7 @@ const data = {
     email: document.querySelector('.js-feedback-form input'),
     message: document.querySelector('.js-feedback-form textarea'),
 }
-const formData = {};
+let formData = {};
 
 data.form.addEventListener('submit', onFormSubmit);
 data.form.addEventListener('input', throttle(onInput, 500));
@@ -24,20 +24,15 @@ function onInput(e) {
 };
 
 function onFormSubmit(e) { 
+
     e.preventDefault();
     if ((data.email.value ==="" || data.message.value ==="")) {
         alert(`Необхідно заповнити всі поля форми`)
         return;
     };
 
-    const res = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    console.log(res);
-//   const { email, message } = e.target.elements;
-//   const formData = {
-//     email : email.value,
-//     message: message.value
-//     }
-//     console.log(formData);
+    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+
     formData = {};
     data.form.reset();
     localStorage.removeItem(STORAGE_KEY);
